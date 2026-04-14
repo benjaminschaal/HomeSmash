@@ -1,0 +1,7 @@
+# Ignorer le fichier contenant les vrais mots de passe
+.streamlit/secrets.toml
+
+# Environnements et caches Python
+.venv/
+__pycache__/
+*.pyc

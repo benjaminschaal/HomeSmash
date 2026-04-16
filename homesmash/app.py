@@ -62,7 +62,6 @@ with st.sidebar:
         "🔍 Disponibilités",
         "📅 Mes Réservations",
         "📊 Statistiques",
-        "📖 Documentation",
     ]
     default_menu = st.session_state.get("nav", "🏠 Accueil")
     if default_menu not in menu_options:
@@ -127,11 +126,6 @@ if menu == "🏠 Accueil":
             st.session_state["nav"] = "📅 Mes Réservations"
             st.rerun()
         st.caption("Consulter vos réservations passées et à venir.")
-
-        if st.button("📖 Documentation", width="stretch"):
-            st.session_state["nav"] = "📖 Documentation"
-            st.rerun()
-        st.caption("Guides d'utilisation et documentation technique.")
 
     # Aucun paramètre rapide supplémentaire sur la page d'accueil
 
@@ -329,26 +323,3 @@ Retrouvez l'historique complet des séances de badminton :
     st.link_button("📊 Ouvrir le Google Sheets", link, width="stretch")
 
 
-# =============================================================================
-# PAGE: DOCUMENTATION
-# =============================================================================
-elif menu == "📖 Documentation":
-    st.header("📖 Documentation")
-
-    doc_tab1, doc_tab2 = st.tabs(["📘 Manuel utilisateur", "🛠️ Documentation technique"])
-
-    with doc_tab1:
-        readme_path = os.path.join(os.path.dirname(__file__), "..", "README.md")
-        if os.path.exists(readme_path):
-            with open(readme_path, "r", encoding="utf-8") as f:
-                st.markdown(f.read())
-        else:
-            st.error("Fichier README.md introuvable.")
-
-    with doc_tab2:
-        tech_path = os.path.join(os.path.dirname(__file__), "readme_tech.md")
-        if os.path.exists(tech_path):
-            with open(tech_path, "r", encoding="utf-8") as f:
-                st.markdown(f.read())
-        else:
-            st.error("Fichier readme_tech.md introuvable.")
